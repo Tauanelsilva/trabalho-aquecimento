@@ -8,12 +8,11 @@ TARGET   := app
 INCLUDE  := -Iinclude/
 SRC      := $(wildcard src/*.cpp) 
 
-OBJECTS := $(notdir $(SRC:.cpp=.o))
-OBJECTS := $(addprefix $(OBJ_DIR)/, $(OBJECTS))
+OBJECTS := $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 
-all: build $(APP_DIR)/$(TARGET)
+all: clean build $(APP_DIR)/$(TARGET) run
 
-$(OBJ_DIR)/%.o: src/%.cpp         
+$(OBJ_DIR)/%.o: %.cpp         
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ -c $<
 
