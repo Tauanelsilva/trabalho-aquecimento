@@ -28,6 +28,7 @@ bool Floresta::carregarDeArquivo(const string& nomeArquivo, int& fogoX, int& fog
 
     // Inicializa a matriz
     matriz.resize(linhas, vector<int>(colunas));
+    
 
     // Leitura da matriz linha por linha
     for (int i = 0; i < linhas; ++i) {
@@ -98,7 +99,7 @@ void Floresta::propagarFogo() {
                 if (VENTO_ESQUERDA && j > 0 && matriz[i][j - 1] == 1) novaMatriz[i][j - 1] = 2;
                 if (VENTO_DIREITA && j < colunas - 1 && matriz[i][j + 1] == 1) novaMatriz[i][j + 1] = 2;
             }
-        }
+        } 
     }
 
     // Substitui a matriz original pela atualizada
@@ -116,5 +117,7 @@ void Floresta::setValor(int x, int y, int valor) {
         matriz[x][y] = valor;
     }
 }
+
+
 
 
