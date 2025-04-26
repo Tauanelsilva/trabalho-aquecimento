@@ -50,9 +50,7 @@ Matriz dinâmica com 5 estados:
 4: Água (extingue fogo)
 Propagação configurável por vento:
 
-cpp
-Copiar
-Editar
+
 // Em Config.hpp
 const bool VENTO_CIMA = true;
 const bool VENTO_BAIXO = true;
@@ -89,9 +87,7 @@ output.dat com histórico completo
 Estatísticas finais detalhadas
 
 📂 Estrutura do Projeto
-graphql
-Copiar
-Editar
+
 .
 ├── include/
 │   ├── Animal.hpp       # Lógica do animal
@@ -110,10 +106,7 @@ Editar
 ⚙️ Configuração
 Edite Config.hpp para ajustar os parâmetros:
 
-cpp
-Copiar
-Editar
-#pragma once
+
 namespace Config {
     // Direções de vento
     const bool VENTO_CIMA = true;
@@ -143,31 +136,21 @@ CMake (opcional)
 
 Método 1: Compilação Direta
 
-bash
-Copiar
-Editar
 g++ -std=c++11 src/*.cpp -I include -o simulador
 ./simulador
 Método 2: Com CMake
 
-bash
-Copiar
-Editar
-mkdir build && cd build
+
 cmake ..
 make
 ./simulador
 📄 Formatos de Arquivos
 Entrada (input/input.dat)
-nginx
-Copiar
-Editar
+
 LINHAS COLUNAS X_FOGO Y_FOGO
 MATRIZ_DA_FLORESTA...
 Exemplo:
 
-Copiar
-Editar
 5 5 2 2
 1 1 1 1 1
 1 0 4 0 1
@@ -175,9 +158,7 @@ Editar
 1 0 0 0 1
 1 1 1 1 1
 Saída (output/output.dat)
-yaml
-Copiar
-Editar
+
 --- Iteração 0 ---
 1 1 1 1 1 
 1 0 A 0 1 
@@ -192,9 +173,7 @@ Passos do animal: 3
 Sobreviveu: Sim
 🧠 Lógica de Implementação
 🔥 Propagação do Fogo
-cpp
-Copiar
-Editar
+
 void Floresta::propagarFogo() {
     vector<vector<int>> novaMatriz = matriz;
     
@@ -213,9 +192,7 @@ void Floresta::propagarFogo() {
     matriz = novaMatriz;
 }
 🦊 Movimento do Animal
-cpp
-Copiar
-Editar
+
 void Animal::mover(Floresta& floresta){
     vector<pair<int,int>> vizinhos;
     // Coleta vizinhos válidos
@@ -235,24 +212,8 @@ void Animal::mover(Floresta& floresta){
     }
 }
 🌐 Exemplos de Simulação
-Caso 1: Propagação Completa
-Entrada:
 
-Copiar
-Editar
-3 3 1 1
-1 1 1
-1 2 1 
-1 1 1
-Saída no Terminal:
-
-Copiar
-Editar
-Iteração 0    Iteração 1    Iteração 2
-🌲🌲🌲        🌲🔥🌲        💀💀💀
-🌲🔥🌲   →   💀💀💀   →   💀💀💀
-🌲🌲🌲        🌲🔥🌲        💀💀💀
-Caso 2: Sobrevivência do Animal
+Caso 1: Sobrevivência do Animal
 Cenário:
 
 Animal começa em (0,0)
@@ -311,6 +272,4 @@ Sistemas de autômatos celulares
 
 Modelagem de emergências
 
-nginx
-Copiar
-Editar
+
