@@ -344,3 +344,7 @@ Implementação de algoritmos de simulação.
 Boas práticas de organização de código.
 
 As técnicas aplicadas podem ser estendidas para simulações ecológicas mais complexas e sistemas de autômatos celulares, oferecendo diversas possibilidades de aplicação no estudo de emergências e comportamentos ecológicos.
+
+Boas práticas de organização de código.
+
+As técnicas aplicadas podem ser estendidas para simulações ecológicas mais complexas e sistemas de autômatos celulares, oferecendo diversas possibilidades de aplicação no estudo de emergências e comportamentos ecológicos.
