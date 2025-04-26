@@ -1,78 +1,48 @@
-🔥 Simulador de Propagação de Fogo em Floresta com Comportamento Animal 🔥
-Aluno: Tauane Luísa Silva
-Professor: Michel Pires da Silva
-Disciplina: Algoritmos e Estruturas de Dados I
+# 🔥 Simulador de Propagação de Fogo em Floresta com Comportamento Animal 🔥
 
-📚 Índice
-Introdução
+**Aluno:** Tauane Luísa Silva  
+**Professor:** Michel Pires da Silva  
+**Disciplina:** Algoritmos e Estruturas de Dados I  
 
-Objetivos
+## 📚 Índice
+1. [Introdução](#-introdução)
+2. [Objetivos](#-objetivos)
+3. [Funcionalidades](#-funcionalidades)
+4. [Estrutura do Projeto](#-estrutura-do-projeto)
+5. [Configuração](#-configuração)
+6. [Compilação e Execução](#-compilação-e-execução)
+7. [Formatos de Arquivos](#-formatos-de-arquivos)
+8. [Lógica de Implementação](#-lógica-de-implementação)
+9. [Casos de Teste](#-casos-de-teste)
+10. [Melhorias Futuras](#-melhorias-futuras)
+11. [Conclusão](#-conclusão)
 
-Funcionalidades
-
-Estrutura do Projeto
-
-Configuração
-
-Compilação e Execução
-
-Formatos de Arquivos
-
-Lógica de Implementação
-
-Casos de Teste
-
-Melhorias Futuras
-
-Como Contribuir
-
-Licença
-
-Conclusão
-
-🌍 Introdução
+## 🌍 Introdução
 Este projeto simula a propagação de fogo em uma floresta representada por uma matriz bidimensional, enquanto um animal inteligente tenta sobreviver ao desastre. Desenvolvido em C++, o sistema utiliza:
 
-Matrizes dinâmicas para representação do ambiente.
+- Matrizes dinâmicas para representação do ambiente
+- Algoritmos de propagação condicional
+- Sistema de prioridades para tomada de decisão do animal
+- Gerenciamento de arquivos para entrada/saída de dados
 
-Algoritmos de propagação condicional baseados na direção do vento.
+## 🎯 Objetivos
+1. Modelar a propagação realista de fogo considerando:
+   - Direção e intensidade do vento
+   - Tipos de terreno (árvores saudáveis, áreas queimadas, água)
+2. Implementar sistema autônomo para o animal com:
+   - Comportamento estratégico
+   - Mecanismo de "segunda chance"
+   - Coleta de estatísticas de desempenho
+3. Fornecer ferramentas para análise:
+   - Visualização em tempo real
+   - Geração de relatórios detalhados
+   - Configuração flexível de parâmetros
 
-Sistema de prioridades para tomada de decisão do animal.
+## ✨ Funcionalidades
 
-Gerenciamento de arquivos para entrada/saída de dados.
-
-A ideia é criar um ambiente interativo e educativo que pode ser utilizado tanto para simulações em ecossistemas quanto para análise de emergências, proporcionando uma ferramenta para estudar a dinâmica de incêndios e comportamentos animais sob situações extremas.
-
-🎯 Objetivos
-Modelar a propagação realista de fogo considerando:
-
-Direção e intensidade do vento.
-
-Tipos de terreno (árvores saudáveis, áreas queimadas, água).
-
-Implementar um sistema autônomo para o animal com:
-
-Comportamento estratégico.
-
-Mecanismo de "segunda chance".
-
-Coleta de estatísticas de desempenho.
-
-Fornecer ferramentas para análise:
-
-Visualização em tempo real.
-
-Geração de relatórios detalhados.
-
-Configuração flexível de parâmetros.
-
-✨ Funcionalidades
-🌳 Sistema de Floresta
+### 🌳 Sistema de Floresta
 Matriz dinâmica com 5 estados:
 
-cpp
-Copiar
-Editar
 0: Área vazia (segura)
 1: Árvore saudável (combustível)
 2: Fogo ativo
@@ -91,35 +61,35 @@ const bool VENTO_DIREITA = true;
 🦊 Comportamento do Animal
 Sistema de prioridades:
 
-Água (4) - Converte para área segura.
+Água (4) - Converte para área segura
 
-Vazio (0) - Movimento seguro.
+Vazio (0) - Movimento seguro
 
-Árvore saudável (1) - Risco futuro.
+Árvore saudável (1) - Risco futuro
 
-Queimada (3) - Última opção.
+Queimada (3) - Última opção
 
 Mecanismo de sobrevivência:
 
-Segunda chance ao encontrar fogo.
+Segunda chance ao encontrar fogo
 
-Registro de iteração da morte.
+Registro de iteração da morte
 
 📊 Sistema de Saída
 Terminal:
 
-Visualização com símbolos personalizáveis.
+Visualização com símbolos personalizáveis
 
-Cores para diferentes estados (opcional).
+Cores para diferentes estados (opcional)
 
 Arquivos:
 
-output.dat com histórico completo.
+output.dat com histórico completo
 
-Estatísticas finais detalhadas.
+Estatísticas finais detalhadas
 
 📂 Estrutura do Projeto
-plaintext
+graphql
 Copiar
 Editar
 .
@@ -165,18 +135,21 @@ namespace Config {
     const char CHAR_ANIMAL = '🦊';
 }
 🚀 Compilação e Execução
-Requisitos
+Requisitos:
+
 Compilador C++11 (g++ ou clang++)
 
 CMake (opcional)
 
 Método 1: Compilação Direta
+
 bash
 Copiar
 Editar
 g++ -std=c++11 src/*.cpp -I include -o simulador
 ./simulador
 Método 2: Com CMake
+
 bash
 Copiar
 Editar
@@ -186,14 +159,13 @@ make
 ./simulador
 📄 Formatos de Arquivos
 Entrada (input/input.dat)
-plaintext
+nginx
 Copiar
 Editar
 LINHAS COLUNAS X_FOGO Y_FOGO
 MATRIZ_DA_FLORESTA...
 Exemplo:
 
-plaintext
 Copiar
 Editar
 5 5 2 2
@@ -203,7 +175,7 @@ Editar
 1 0 0 0 1
 1 1 1 1 1
 Saída (output/output.dat)
-plaintext
+yaml
 Copiar
 Editar
 --- Iteração 0 ---
@@ -266,7 +238,6 @@ void Animal::mover(Floresta& floresta){
 Caso 1: Propagação Completa
 Entrada:
 
-plaintext
 Copiar
 Editar
 3 3 1 1
@@ -275,7 +246,6 @@ Editar
 1 1 1
 Saída no Terminal:
 
-plaintext
 Copiar
 Editar
 Iteração 0    Iteração 1    Iteração 2
@@ -285,66 +255,62 @@ Iteração 0    Iteração 1    Iteração 2
 Caso 2: Sobrevivência do Animal
 Cenário:
 
-Animal começa em (0,0).
+Animal começa em (0,0)
 
-Água em (1,2).
+Água em (1,2)
 
-Fogo se propaga da direita.
+Fogo se propaga da direita
 
 Resultado:
 
 Animal encontrou água na iteração 3!
 
-Sobreviveu: Sim.
+Sobreviveu: Sim
 
-Água encontrada: 1.
+Água encontrada: 1
 
 🔮 Melhorias Futuras
-Otimização: Usar std::queue para células em chamas e implementar multithreading.
+Otimização:
+Usar std::queue para células em chamas
 
-Visualização: Interface gráfica com SFML ou OpenGL para animações de propagação.
+Implementar multithreading
 
-Funcionalidades: Adicionar múltiplos animais, diferentes tipos de vegetação e umidade variável.
+Visualização:
+Interface gráfica com SFML
 
-Análise Científica: Exportar dados para Python e gerar gráficos de propagação.
+Animações de propagação
 
-🤝 Como Contribuir
-Contribuições são bem-vindas! Para contribuir com este projeto, siga estas etapas:
+Funcionalidades:
+Múltiplos animais
 
-Faça um fork deste repositório.
+Diferentes tipos de vegetação
 
-Crie uma nova branch (git checkout -b feature-xyz).
+Umidade variável
 
-Realize as modificações desejadas.
+Análise Científica:
+Exportar dados para Python
 
-Teste as suas alterações localmente.
+Gerar gráficos de propagação
 
-Envie um pull request explicando as modificações realizadas.
-
-Diretrizes de Contribuição:
-
-Siga o estilo de codificação usado no projeto.
-
-Adicione comentários e documentação para suas alterações.
-
-Verifique se todos os testes passam antes de enviar o pull request.
-
-📝 Licença
-Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para mais detalhes.
-
-🏁 Conclusão
+📝 Conclusão
 Este projeto demonstra competência em:
 
-Projeto de sistemas complexos em C++.
+Projeto de sistemas complexos em C++
 
-Uso eficiente de estruturas de dados.
+Uso eficiente de estruturas de dados
 
-Implementação de algoritmos de simulação.
+Implementação de algoritmos de simulação
 
-Boas práticas de organização de código.
+Boas práticas de organização de código
 
-As técnicas aplicadas podem ser estendidas para simulações ecológicas mais complexas e sistemas de autômatos celulares, oferecendo diversas possibilidades de aplicação no estudo de emergências e comportamentos ecológicos.
+As técnicas aplicadas podem ser estendidas para:
 
-Boas práticas de organização de código.
+Simulações ecológicas mais complexas
 
-As técnicas aplicadas podem ser estendidas para simulações ecológicas mais complexas e sistemas de autômatos celulares, oferecendo diversas possibilidades de aplicação no estudo de emergências e comportamentos ecológicos.
+Sistemas de autômatos celulares
+
+Modelagem de emergências
+
+nginx
+Copiar
+Editar
