@@ -1,64 +1,91 @@
- README - Simulador de Propagação de Fogo em Floresta com Comportamento Animal 🔥
-Aluno: Tauane Luísa Silva
-Professor: Michel Pires da Silva
-Disciplina: Algoritmos e Estruturas de Dados I
+# 🔥 Simulador de Propagação de Fogo em Floresta com Comportamento Animal 🔥
 
-📌 Introdução
-Este projeto simula a propagação de fogo em uma floresta representada por uma matriz, enquanto um animal se movimenta estrategicamente para sobreviver. O sistema modela:
+**Aluno:** Tauane Luísa Silva  
+**Professor:** Michel Pires da Silva  
+**Disciplina:** Algoritmos e Estruturas de Dados I  
 
-Dinâmica do fogo: Influenciada por direções do vento (configuráveis).
+## 📚 Índice
+1. [Introdução](#-introdução)
+2. [Objetivos](#-objetivos)
+3. [Funcionalidades](#-funcionalidades)
+4. [Estrutura do Projeto](#-estrutura-do-projeto)
+5. [Configuração](#-configuração)
+6. [Compilação e Execução](#-compilação-e-execução)
+7. [Formatos de Arquivos](#-formatos-de-arquivos)
+8. [Lógica de Implementação](#-lógica-de-implementação)
+9. [Casos de Teste](#-casos-de-teste)
+10. [Melhorias Futuras](#-melhorias-futuras)
+11. [Conclusão](#-conclusão)
 
-Comportamento do animal: Movimentação inteligente baseada em prioridades de terreno.
+## 🌍 Introdução
+Este projeto simula a propagação de fogo em uma floresta representada por uma matriz bidimensional, enquanto um animal inteligente tenta sobreviver ao desastre. Desenvolvido em C++, o sistema utiliza:
 
-Geração de relatórios: Logs detalhados em output.dat e visualização no terminal.
+- Matrizes dinâmicas para representação do ambiente
+- Algoritmos de propagação condicional
+- Sistema de prioridades para tomada de decisão do animal
+- Gerenciamento de arquivos para entrada/saída de dados
 
-🎯 Objetivos
-Simular a propagação de fogo com/sem influência do vento.
+## 🎯 Objetivos
+1. Modelar a propagação realista de fogo considerando:
+   - Direção e intensidade do vento
+   - Tipos de terreno (árvores saudáveis, áreas queimadas, água)
+2. Implementar sistema autônomo para o animal com:
+   - Comportamento estratégico
+   - Mecanismo de "segunda chance"
+   - Coleta de estatísticas de desempenho
+3. Fornecer ferramentas para análise:
+   - Visualização em tempo real
+   - Geração de relatórios detalhados
+   - Configuração flexível de parâmetros
 
-Implementar algoritmos de movimentação autônoma para o animal.
+## ✨ Funcionalidades
 
-Analisar a eficiência computacional das estruturas de dados utilizadas.
-
-🛠️ Funcionalidades
-🌳 Floresta
-Matriz dinâmica com estados:
-
+### 🌳 Sistema de Floresta
+Matriz dinâmica com 5 estados:
+```cpp
 0: Área vazia (segura)
-
-1: Árvore saudável
-
+1: Árvore saudável (combustível)
 2: Fogo ativo
-
-3: Árvore queimada
-
-4: Água (protege adjacências).
-
-Propagação do fogo em direções configuráveis (Config.hpp).
-
-🦊 Animal
-Prioridades de movimento: Água > Vazio > Árvore saudável > Queimada.
-
-Segunda chance: Sobrevive uma vez ao fogo antes de morrer.
-
-Estatísticas: Registro de passos, água encontrada e iteração de morte.
-
-📊 Saída
-Arquivo output.dat com:
-
-Estado da floresta por iteração.
-
-Posição do animal (A).
-
-Resumo final (sobrevivência, passos, etc.).
-
-⚙️ Configuração
-Edite Config.hpp para ajustar:
+3: Árvore queimada (inerte)
+4: Água (extingue fogo)
+Propagação configurável por vento:
 
 cpp
-const bool VENTO_CIMA = true;     // Vento para cima  
-const bool VENTO_BAIXO = true;    // Vento para baixo  
-const int MAX_INTERACOES = 100;   // Limite de iterações  
-const char CHAR_FOGO = '🔥';      // Símbolo do fogo no terminal  
+// Em Config.hpp
+const bool VENTO_CIMA = true;
+const bool VENTO_BAIXO = true;
+const bool VENTO_ESQUERDA = true;
+const bool VENTO_DIREITA = true;
+🦊 Comportamento do Animal
+Sistema de prioridades:
+
+Água (4) - Converte para área segura
+
+Vazio (0) - Movimento seguro
+
+Árvore saudável (1) - Risco futuro
+
+Queimada (3) - Última opção
+
+Mecanismo de sobrevivência:
+
+Segunda chance ao encontrar fogo
+
+Registro de iteração da morte
+
+📊 Sistema de Saída
+Terminal:
+
+Visualização com símbolos personalizáveis
+
+Cores para diferentes estados (opcional)
+
+Arquivos:
+
+output.dat com histórico completo
+
+Estatísticas finais detalhadas
+
 📂 Estrutura do Projeto
 .
 ├── include/
@@ -75,59 +102,186 @@ const char CHAR_FOGO = '🔥';      // Símbolo do fogo no terminal
 │   └── input.dat        # Exemplo de entrada
 └── output/
     └── output.dat       # Resultados gerados
+⚙️ Configuração
+Edite Config.hpp para ajustar os parâmetros:
+
+cpp
+#pragma once
+namespace Config {
+    // Direções de vento
+    const bool VENTO_CIMA = true;
+    const bool VENTO_BAIXO = true;
+    const bool VENTO_ESQUERDA = true;
+    const bool VENTO_DIREITA = true;
+    
+    // Limites da simulação
+    const int MAX_INTERACOES = 100;
+    const int MIN_LINHAS = 5;
+    const int MIN_COLUNAS = 5;
+    
+    // Símbolos de exibição
+    const char CHAR_VAZIO = '.';
+    const char CHAR_SAUDE = '🌲';
+    const char CHAR_FOGO = '🔥';
+    const char CHAR_QUEIMADA = '💀';
+    const char CHAR_AGUA = '💧';
+    const char CHAR_ANIMAL = '🦊';
+}
 🚀 Compilação e Execução
+Requisitos
+Compilador C++11 (g++ ou clang++)
+
+CMake (opcional)
+
 Método 1: Compilação Direta
 bash
-g++ -std=c++11 src/*.cpp -I include -o simulador  
-./simulador  
+g++ -std=c++11 src/*.cpp -I include -o simulador
+./simulador
 Método 2: Com CMake
 bash
-mkdir build && cd build  
-cmake ..  
-make  
-./simulador  
-📊 Exemplo de Entrada (input.dat)
-5 5 2 2          # 5x5 matriz, fogo inicia em (2,2)
-1 1 1 1 1        # Matriz da floresta:
-1 0 4 0 1        # 0 = Vazio, 1 = Árvore, 4 = Água
-1 1 2 1 1  
-1 0 0 0 1  
-1 1 1 1 1  
-🖥️ Saída no Terminal
+mkdir build && cd build
+cmake ..
+make
+./simulador
+📄 Formatos de Arquivos
+Entrada (input/input.dat)
+LINHAS COLUNAS X_FOGO Y_FOGO
+MATRIZ_DA_FLORESTA...
+Exemplo:
+
+5 5 2 2
+1 1 1 1 1
+1 0 4 0 1
+1 1 2 1 1
+1 0 0 0 1
+1 1 1 1 1
+Saída (output/output.dat)
 --- Iteração 0 ---
-1 1 1 1 1  
-1 0 A 0 1  
-1 1 🔥 1 1  
-1 0 0 0 1  
-1 1 1 1 1  
+1 1 1 1 1 
+1 0 A 0 1 
+1 1 2 1 1 
+1 0 0 0 1 
+1 1 1 1 1 
 
-[!] Animal usou segunda chance ao escapar do fogo!
-📌 Casos de Teste
-1. Propagação com Vento
-Entrada: Fogo em (1,1) com vento para a direita.
+====== RESUMO ======
+Iterações: 5
+Passos do animal: 3
+Água encontrada: 1
+Sobreviveu: Sim
+🧠 Lógica de Implementação
+🔥 Propagação do Fogo
+cpp
+void Floresta::propagarFogo() {
+    vector<vector<int>> novaMatriz = matriz;
+    
+    for(int i=0; i<linhas; i++){
+        for(int j=0; j<colunas; j++){
+            if(matriz[i][j] == 2){ // Célula em chamas
+                novaMatriz[i][j] = 3; // Vira cinza
+                
+                // Propaga para vizinhos conforme vento
+                if(VENTO_CIMA && i>0 && matriz[i-1][j]==1)
+                    novaMatriz[i-1][j] = 2;
+                // [...] outras direções
+            }
+        }
+    }
+    matriz = novaMatriz;
+}
+🦊 Movimento do Animal
+cpp
+void Animal::mover(Floresta& floresta){
+    vector<pair<int,int>> vizinhos;
+    // Coleta vizinhos válidos
+    // [...] 
+    
+    // Ordena por prioridade
+    sort(vizinhos.begin(), vizinhos.end(), [&](auto a, auto b){
+        return prioridade(floresta.getValor(a.first, a.second)) 
+             < prioridade(floresta.getValor(b.first, b.second));
+    });
+    
+    // Tenta se mover
+    for(auto& pos : vizinhos){
+        int tipo = floresta.getValor(pos.first, pos.second);
+        if(tipo == 4) aguaEncontrada++;
+        // [...] Lógica de movimento
+    }
+}
+🌐 Exemplos de Simulação
+Caso 1: Propagação Completa
+Entrada:
 
-Saída: Fogo se propaga apenas para a direita (VENTO_DIREITA=true).
+3 3 1 1
+1 1 1
+1 2 1 
+1 1 1
+Saída no Terminal:
 
-2. Animal Preso
-Cenário: Floresta 3x3 com fogo ao redor do animal.
+Iteração 0    Iteração 1    Iteração 2
+🌲🌲🌲        🌲🔥🌲        💀💀💀
+🌲🔥🌲   →   💀💀💀   →   💀💀💀
+🌲🌲🌲        🌲🔥🌲        💀💀💀
+Caso 2: Sobrevivência do Animal
+Cenário:
 
-Resultado: Animal morre na iteração 3.
+Animal começa em (0,0)
 
-📈 Melhorias Futuras
-Otimização: Usar std::queue para células em chamas (evita varrer matriz inteira).
+Água em (1,2)
 
-Visualização: Gráficos em tempo real com SFML ou OpenGL.
+Fogo se propaga da direita
 
-Estatísticas: Calcular porcentagem de área queimada por iteração.
+Resultado:
+
+Animal encontrou água na iteração 3!
+Sobreviveu: Sim
+Água encontrada: 1
+🔮 Melhorias Futuras
+Otimização:
+
+Usar std::queue para células em chamas
+
+Implementar multithreading
+
+Visualização:
+
+Interface gráfica com SFML
+
+Animações de propagação
+
+Funcionalidades:
+
+Múltiplos animais
+
+Diferentes tipos de vegetação
+
+Umidade variável
+
+Análise Científica:
+
+Exportar dados para Python
+
+Gerar gráficos de propagação
 
 📝 Conclusão
-O projeto aplicou conceitos de:
+Este projeto demonstra competência em:
 
-Manipulação de matrizes (propagação do fogo).
+Projeto de sistemas complexos em C++
 
-Tomada de decisão (movimento do animal).
+Uso eficiente de estruturas de dados
 
-Modularização (separação em classes).
+Implementação de algoritmos de simulação
 
-👨‍💻 Autor
+Boas práticas de organização de código
+
+As técnicas aplicadas podem ser estendidas para:
+
+Simulações ecológicas mais complexas
+
+Sistemas de autômatos celulares
+
+Modelagem de emergências
+
+👩‍💻 Autora
 Tauane Luísa Silva
+
