@@ -42,7 +42,7 @@ Este projeto simula a propagação de fogo em uma floresta representada por uma 
 
 ### 🌳 Sistema de Floresta
 Matriz dinâmica com 5 estados:
-```cpp
+cpp
 0: Área vazia (segura)
 1: Árvore saudável (combustível)
 2: Fogo ativo
@@ -51,6 +51,8 @@ Matriz dinâmica com 5 estados:
 Propagação configurável por vento:
 
 cpp
+Copiar
+Editar
 // Em Config.hpp
 const bool VENTO_CIMA = true;
 const bool VENTO_BAIXO = true;
@@ -87,6 +89,9 @@ output.dat com histórico completo
 Estatísticas finais detalhadas
 
 📂 Estrutura do Projeto
+graphql
+Copiar
+Editar
 .
 ├── include/
 │   ├── Animal.hpp       # Lógica do animal
@@ -106,6 +111,8 @@ Estatísticas finais detalhadas
 Edite Config.hpp para ajustar os parâmetros:
 
 cpp
+Copiar
+Editar
 #pragma once
 namespace Config {
     // Direções de vento
@@ -113,7 +120,7 @@ namespace Config {
     const bool VENTO_BAIXO = true;
     const bool VENTO_ESQUERDA = true;
     const bool VENTO_DIREITA = true;
-    
+   
     // Limites da simulação
     const int MAX_INTERACOES = 100;
     const int MIN_LINHAS = 5;
@@ -128,27 +135,39 @@ namespace Config {
     const char CHAR_ANIMAL = '🦊';
 }
 🚀 Compilação e Execução
-Requisitos
+Requisitos:
+
 Compilador C++11 (g++ ou clang++)
 
 CMake (opcional)
 
 Método 1: Compilação Direta
+
 bash
+Copiar
+Editar
 g++ -std=c++11 src/*.cpp -I include -o simulador
 ./simulador
 Método 2: Com CMake
+
 bash
+Copiar
+Editar
 mkdir build && cd build
 cmake ..
 make
 ./simulador
 📄 Formatos de Arquivos
 Entrada (input/input.dat)
+nginx
+Copiar
+Editar
 LINHAS COLUNAS X_FOGO Y_FOGO
 MATRIZ_DA_FLORESTA...
 Exemplo:
 
+Copiar
+Editar
 5 5 2 2
 1 1 1 1 1
 1 0 4 0 1
@@ -156,6 +175,9 @@ Exemplo:
 1 0 0 0 1
 1 1 1 1 1
 Saída (output/output.dat)
+yaml
+Copiar
+Editar
 --- Iteração 0 ---
 1 1 1 1 1 
 1 0 A 0 1 
@@ -171,6 +193,8 @@ Sobreviveu: Sim
 🧠 Lógica de Implementação
 🔥 Propagação do Fogo
 cpp
+Copiar
+Editar
 void Floresta::propagarFogo() {
     vector<vector<int>> novaMatriz = matriz;
     
@@ -190,10 +214,11 @@ void Floresta::propagarFogo() {
 }
 🦊 Movimento do Animal
 cpp
+Copiar
+Editar
 void Animal::mover(Floresta& floresta){
     vector<pair<int,int>> vizinhos;
     // Coleta vizinhos válidos
-    // [...] 
     
     // Ordena por prioridade
     sort(vizinhos.begin(), vizinhos.end(), [&](auto a, auto b){
@@ -212,12 +237,16 @@ void Animal::mover(Floresta& floresta){
 Caso 1: Propagação Completa
 Entrada:
 
+Copiar
+Editar
 3 3 1 1
 1 1 1
 1 2 1 
 1 1 1
 Saída no Terminal:
 
+Copiar
+Editar
 Iteração 0    Iteração 1    Iteração 2
 🌲🌲🌲        🌲🔥🌲        💀💀💀
 🌲🔥🌲   →   💀💀💀   →   💀💀💀
@@ -234,23 +263,23 @@ Fogo se propaga da direita
 Resultado:
 
 Animal encontrou água na iteração 3!
+
 Sobreviveu: Sim
+
 Água encontrada: 1
+
 🔮 Melhorias Futuras
 Otimização:
-
 Usar std::queue para células em chamas
 
 Implementar multithreading
 
 Visualização:
-
 Interface gráfica com SFML
 
 Animações de propagação
 
 Funcionalidades:
-
 Múltiplos animais
 
 Diferentes tipos de vegetação
@@ -258,7 +287,6 @@ Diferentes tipos de vegetação
 Umidade variável
 
 Análise Científica:
-
 Exportar dados para Python
 
 Gerar gráficos de propagação
@@ -281,7 +309,3 @@ Simulações ecológicas mais complexas
 Sistemas de autômatos celulares
 
 Modelagem de emergências
-
-👩‍💻 Autora
-Tauane Luísa Silva
-
