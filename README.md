@@ -267,4 +267,5 @@ As técnicas aplicadas podem ser estendidas para:
 - Simulações ecológicas realistas
 - Desenvolvimento de autômatos celulares
 - Jogos de estratégia baseados em simulação
+  
 <img src="https://www.mermaidchart.com/raw/c45abd61-03f4-49d4-8610-1d51e501106b?theme=light&version=v0.1&format=svg "/>
