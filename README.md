@@ -1,8 +1,8 @@
 # 🔥 Simulador de Propagação de Fogo em Floresta com Comportamento Animal 🔥
 
-**Aluno:** Tauane Luísa Silva  
-**Professor:** Michel Pires da Silva  
-**Disciplina:** Algoritmos e Estruturas de Dados I  
+*Aluno:* Tauane Luísa Silva  
+*Professor:* Michel Pires da Silva  
+*Disciplina:* Algoritmos e Estruturas de Dados I  
 
 ## 📚 Índice
 1. [Introdução](#-introdução)
@@ -50,13 +50,13 @@ Matriz dinâmica com 5 estados:
 
 Propagação configurável por vento:
 
-```cpp
+cpp
 // Em Config.hpp
 const bool VENTO_CIMA = true;
 const bool VENTO_BAIXO = true;
 const bool VENTO_ESQUERDA = true;
 const bool VENTO_DIREITA = true;
-```
+
 
 ### 🦊 Comportamento do Animal
 Sistema de prioridades:
@@ -70,12 +70,12 @@ Mecanismo de sobrevivência:
 - Registro da iteração da morte
 
 ### 📊 Sistema de Saída
-- **Terminal**: Visualização com símbolos e cores (opcional)
-- **Arquivos**: Geração de `output.dat` com histórico completo e estatísticas finais detalhadas
+- *Terminal*: Visualização com símbolos e cores (opcional)
+- *Arquivos*: Geração de output.dat com histórico completo e estatísticas finais detalhadas
 
 ## 📂 Estrutura do Projeto
 
-```
+
 .
 ├── include/
 │   ├── Animal.hpp       # Lógica do animal
@@ -91,12 +91,12 @@ Mecanismo de sobrevivência:
 │   └── input.dat        # Exemplo de entrada
 └── output/
     └── output.dat       # Resultados gerados
-```
 
-## ⚙️ Configuração
-Edite `Config.hpp` para ajustar os parâmetros:
 
-```cpp
+## ⚙ Configuração
+Edite Config.hpp para ajustar os parâmetros:
+
+cpp
 namespace Config {
     // Direções do vento
     const bool VENTO_CIMA = true;
@@ -117,48 +117,48 @@ namespace Config {
     const char CHAR_AGUA = '💧';
     const char CHAR_ANIMAL = '🦊';
 }
-```
+
 
 ## 🚀 Compilação e Execução
 
-**Requisitos**:
+*Requisitos*:
 - Compilador C++11 (g++ ou clang++)
 - CMake (opcional)
 
 ### Método 1: Compilação Direta
-```bash
+bash
 g++ -std=c++11 src/*.cpp -I include -o simulador
 ./simulador
-```
+
 
 ### Método 2: Usando CMake
-```bash
+bash
 mkdir build
 cd build
 cmake ..
 make
 ./simulador
-```
+
 
 ## 📄 Formatos de Arquivos
 
-### Entrada (`input/input.dat`)
-```
+### Entrada (input/input.dat)
+
 LINHAS COLUNAS X_FOGO Y_FOGO
 MATRIZ_DA_FLORESTA...
-```
-**Exemplo**:
-```
+
+*Exemplo*:
+
 5 5 2 2
 1 1 1 1 1
 1 0 4 0 1
 1 1 2 1 1
 1 0 0 0 1
 1 1 1 1 1
-```
 
-### Saída (`output/output.dat`)
-```
+
+### Saída (output/output.dat)
+
 --- Iteração 0 ---
 1 1 1 1 1 
 1 0 A 0 1 
@@ -171,12 +171,12 @@ Iterações: 5
 Passos do animal: 3
 Água encontrada: 1
 Sobreviveu: Sim
-```
+
 
 ## 🧠 Lógica de Implementação
 
 ### 🔥 Propagação do Fogo
-```cpp
+cpp
 void Floresta::propagarFogo() {
     vector<vector<int>> novaMatriz = matriz;
     
@@ -199,10 +199,10 @@ void Floresta::propagarFogo() {
     }
     matriz = novaMatriz;
 }
-```
+
 
 ### 🦊 Movimento do Animal
-```cpp
+cpp
 void Animal::mover(Floresta& floresta) {
     vector<pair<int,int>> vizinhos;
     // Coleta vizinhos válidos
@@ -221,37 +221,37 @@ void Animal::mover(Floresta& floresta) {
         // [...] Lógica de movimento
     }
 }
-```
+
 
 ## 🌐 Exemplos de Simulação
 
 ### Caso 1: Sobrevivência do Animal
-**Cenário**:
+*Cenário*:
 - Animal começa em (0,0)
 - Água em (1,2)
 - Fogo se propaga da direita
 
-**Resultado**:
+*Resultado*:
 - Animal encontrou água na iteração 3!
 - Sobreviveu: Sim
 - Água encontrada: 1
 
 ## 🔮 Melhorias Futuras
 
-**Otimização**:
-- Usar `std::queue` para células em chamas
+*Otimização*:
+- Usar std::queue para células em chamas
 - Implementar multithreading para propagação do fogo
 
-**Visualização**:
+*Visualização*:
 - Criar interface gráfica com SFML
 - Adicionar animações da propagação
 
-**Funcionalidades**:
+*Funcionalidades*:
 - Múltiplos animais com estratégias diferentes
 - Diferentes tipos de vegetação e resistência
 - Considerar umidade do ambiente
 
-**Análise Científica**:
+*Análise Científica*:
 - Exportar dados para análise em Python
 - Gerar gráficos de velocidade de propagação
 
@@ -267,5 +267,5 @@ As técnicas aplicadas podem ser estendidas para:
 - Simulações ecológicas realistas
 - Desenvolvimento de autômatos celulares
 - Jogos de estratégia baseados em simulação
-  
-<img src="https://www.mermaidchart.com/raw/c45abd61-03f4-49d4-8610-1d51e501106b?theme=light&version=v0.1&format=svg "/>
+---
+<img src="https://www.mermaidchart.com/raw/c45abd61-03f4-49d4-8610-1d51e501106b?theme=light&version=v0.1&format=svg"/>
